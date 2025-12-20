@@ -1,0 +1,7 @@
+{
+  "name": "Monkey Egg Catcher AR",
+  "description": "An AR game where you wear a monkey mask and catch falling eggs with your mouth using face tracking.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

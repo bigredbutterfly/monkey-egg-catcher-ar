@@ -1,20 +1,35 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Monkey Egg Catcher AR — DeepSeek 版
 
-# Run and deploy your AI Studio app
+一个 AR 游戏：戴上猴子面具，张嘴接住掉落的小吃，用人脸追踪玩。
 
-This contains everything you need to run your app locally.
+原版来自 AI Studio，AI 点评原本用 Gemini；本版已改成 **DeepSeek**。
 
-View your app in AI Studio: https://ai.studio/apps/drive/10zKPMrOfi_PK00RLYxEderkgSUDts7ki
+## 本地运行
 
-## Run Locally
+**前置要求：** Node.js 22 或 24
 
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
+1. 安装依赖：
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+2. 在 [.env.local](.env.local) 里填 `DEEPSEEK_API_KEY`
+   - 在 https://platform.deepseek.com/api_keys 申请
+   - 不填也能跑，游戏结束后的点评会用内置的 mock 文案代替
+   - 模型默认 `deepseek-flash`，可在 `.env.local` 用 `DEEPSEEK_MODEL` 改成 `deepseek-v4-pro`
+3. 运行：
    `npm run dev`
+   打开 http://localhost:3000，允许摄像头
+
+## 生产运行
+
+```bash
+npm install
+npm run build
+NODE_ENV=production npm start
+```
+
+## 线上地址
+
+https://monkey-egg-catcher-ar-vercel.vercel.app/
+
+当前发布在 Vercel，没有使用阿里云服务器。Vercel 部署时 Framework Preset 选 Vite，Build Command 用 `npm run build`，Output Directory 用 `dist`。
+
+本地开发仍用上面的 `npm run dev`，由 `server.ts` 提供 `/api/commentary` 点评接口。
